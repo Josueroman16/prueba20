@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectroHogar - Tienda de Electrodomésticos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+    header {
+      background-color: #0033a0;
+      color: white;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .productos-container {
+      display: none;
+      padding: 2rem;
+      background-color: white;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .producto-lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .producto {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      margin: 1rem;
+      width: 22%;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .producto:hover {
+      transform: translateY(-5px);
+    }
+    .producto img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .producto h3 {
+      margin: 1rem 0;
+      font-size: 1.25rem;
+      color: #333;
+    }
+    .producto p {
+      color: #777;
+      margin-bottom: 1rem;
+    }
+    .btn-comprar {
+      background-color: #ffcc00;
+      color: #000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+    .btn-comprar:hover {
+      background-color: #e6b800;
+    }
+    #carrito {
+      margin-top: 30px;
+      background-color: #0033a0;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    footer {
+      background-color: #0033a0;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    /* Estilos para la interfaz inicial */
+    #inicio {
+      background-image: url('https://images.unsplash.com/photo-1605296866502-e0036b5588cf'); /* Imagen de fondo */
+      background-size: cover;
+      background-position: center;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+    }
+    #inicio h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    #inicio p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    #inicio .btn-inicio {
+      background-color: #ffcc00;
+      color: #000;
+      border: none;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1.2rem;
+    }
+    #inicio .btn-inicio:hover {
+      background-color: #e6b800;
+    }
+
+    /* Estilo del texto promocional */
+    .promocion {
+      background-color: #ffcc00;
+      color: #0033a0;
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ElectroHogar</h1>
+    <nav>
+      <a onclick="mostrarSeccion('inicio')">Inicio</a>
+      <a onclick="mostrarSeccion('cocina')">Cocina</a>
+      <a onclick="mostrarSeccion('refrigeracion')">Refrigeración</a>
+      <a onclick="mostrarSeccion('lavado')">Lavado</a>
+      <a onclick="mostrarSeccion('pequenos')">Pequeños</a>
+      <a onclick="mostrarSeccion('carrito')">🛒 Carrito</a>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h2>Bienvenido a ElectroHogar</h2>
+    <p>Encuentra los mejores electrodomésticos para tu hogar, con calidad premium y precios inigualables.</p>
+    <button class="btn-inicio" onclick="mostrarSeccion('cocina')">Ver productos</button>
+  </section>
+
+  <section class="promocion">
+    <h2>¡Oferta Especial!</h2>
+    <p>¡Aprovecha nuestras promociones exclusivas por tiempo limitado! No te quedes sin los mejores productos.</p>
+  </section>
+
+  <section id="cocina" class="productos-container">
+    <h2>Electrodomésticos de Cocina</h2>
+    <div class="producto-lista">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1599496474733-04c1d80e0b4e" alt="Horno Eléctrico Premium">
+        <h3>Horno Eléctrico Premium</h3>
+        <p>Diseño elegante y gran eficiencia energética.</p>
+        <button class="btn-comprar" onclick="agregarAlCarrito('Horno Eléctrico Premium')">Comprar</button>
+      </div>
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1611056194104-4d2e394d32c8" alt="Microondas Moderno">
+        <h3>Microondas Moderno</h3>
+        <p>Comodidad y rapidez en tu cocina.</p>
+        <button class="btn-comprar" onclick="agregarAlCarrito('Microondas Moderno')">Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="refrigeracion" class="productos-container">
+    <h2>Refrigeradores</h2>
+    <div class="producto-lista">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1600905301111-44675f8db251" alt="Refrigerador de Doble Puerta">
+        <h3>Refrigerador de Doble Puerta</h3>
+        <p>Gran capacidad y eficiencia energética.</p>
+        <button class="btn-comprar" onclick="agregarAlCarrito('Refrigerador de Doble Puerta')">Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="lavado" class="productos-container">
+    <h2>Lavadoras</h2>
+    <div class="producto-lista">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1617996210199-d5b1b039f634" alt="Lavadora Inteligente">
+        <h3>Lavadora Inteligente</h3>
+        <p>Con conectividad Wi-Fi y ahorro de energía.</p>
+        <button class="btn-comprar" onclick="agregarAlCarrito('Lavadora Inteligente')">Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="pequenos" class="productos-container">
+    <h2>Pequeños Electrodomésticos</h2>
+    <div class="producto-lista">
+      <div class="producto">
+        <img src="https://images.unsplash.com/photo-1580109875321-8e9ecace4ea7" alt="Cafetera de Lujo">
+        <h3>Cafetera de Lujo</h3>
+        <p>El café perfecto con solo presionar un botón.</p>
+        <button class="btn-comprar" onclick="agregarAlCarrito('Cafetera de Lujo')
